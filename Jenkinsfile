@@ -18,7 +18,8 @@ pipeline {
             steps {
                 echo "Installing Python requirements..."
                 bat "\"%PYTHON%\" -m pip install --upgrade pip"
-                bat "\"%PYTHON%\" -m pip install -r requirements.txt"
+                bat "\"%PYTHON%\" -m pip install -r project\\requirements.txt"
+
             }
         }
 
