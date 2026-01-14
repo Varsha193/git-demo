@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // ✅ Your actual python path
+        PYTHON = 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -12,15 +17,15 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo "Installing Python requirements..."
-                bat 'python -m pip install --upgrade pip'
-                bat 'pip install -r requirements.txt'
+                bat "\"%PYTHON%\" -m pip install --upgrade pip"
+                bat "\"%PYTHON%\" -m pip install -r requirements.txt"
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo "Running pytest..."
-                bat 'pytest -v'
+                bat "\"%PYTHON%\" -m pytest -v"
             }
         }
     }
